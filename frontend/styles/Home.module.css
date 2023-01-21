@@ -151,6 +151,16 @@
   background-clip: content-box;
 }
 
+.button{
+  background-color: black;
+  color: white;
+  font-size: 30px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {

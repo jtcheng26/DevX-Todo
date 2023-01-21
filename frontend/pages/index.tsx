@@ -2,10 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import React, { useState } from "react"
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [fname, setFname] = useState("")
+
+  const handleChange = e => {
+    setFname(e.target.value)
+  }
   return (
     <>
       <Head>
@@ -16,6 +22,28 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
+          <header>ToDo App</header>
+          <div className={styles.button}>
+            <button>Add Note</button> 
+          </div>
+          <div>
+            <h1>Write ToDo Item</h1> 
+            <form>
+              <label>
+                <input type="text" />
+              </label>
+            </form>
+          </div>
+          <div>
+            <h1>React Form Handling</h1>
+            <form>
+              <label>
+                First Name:{" "}
+                <input type="text" value={fname} onChange={handleChange} />
+              </label>
+            </form>
+            <h5>First name: {fname}</h5>
+          </div>
           <p>
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
