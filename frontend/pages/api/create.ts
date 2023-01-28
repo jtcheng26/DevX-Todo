@@ -3,8 +3,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { tasks } from "./get";
 
 type Data = {
-  name: string;
-};
+  title: string;
+  details: string;
+}[];
 
 export default function handler(
   req: NextApiRequest,
@@ -15,5 +16,5 @@ export default function handler(
     details: req.body["details"],
   });
 
-  res.status(200).json({ name: "John Doe" });
+  res.status(200).json(tasks);
 }
