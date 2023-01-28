@@ -1,17 +1,20 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import React, { useState } from "react"
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import styles from "@/styles/Home.module.css";
+import React, { useState } from "react";
+import { getItems } from "@/components/getItems";
+import { createItem } from "@/components/createItem";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [fname, setFname] = useState("")
+  const [fname, setFname] = useState("");
 
-  const handleChange = e => {
-    setFname(e.target.value)
-  }
+  const handleChange = (e) => {
+    setFname(e.target.value);
+  };
+
   return (
     <>
       <Head>
@@ -24,10 +27,10 @@ export default function Home() {
         <div className={styles.description}>
           <header>ToDo App</header>
           <div className={styles.button}>
-            <button>Add Note</button> 
+            <button>Add Note</button>
           </div>
           <div>
-            <h1>Write ToDo Item</h1> 
+            <h1>Write ToDo Item</h1>
             <form>
               <label>
                 <input type="text" />
@@ -54,7 +57,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -147,5 +150,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
