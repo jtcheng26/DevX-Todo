@@ -15,6 +15,11 @@ const ItemDiv = styled.div`
   border-radius: 5px;
   background-color: #272743;
   padding: 10px;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
 `;
 
 export default function TodoItem({ item, markComplete }: Props) {

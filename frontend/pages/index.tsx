@@ -7,6 +7,7 @@ import { getItems } from "@/components/getItems";
 import { createItem } from "@/components/createItem";
 import TodoList from "@/components/TodoList";
 import { completeItem } from "@/components/completeItem";
+import TodoForm from "@/components/TodoForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,51 +50,23 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <header>ToDo App</header>
-          <div>
-            <h1>Write ToDo Item</h1>
-            <form>
-              <label>
-                <input type="text" />
-              </label>
-            </form>
-          </div>
-          <div>
-            <h1>Title</h1>
+          <div className={styles.content}>
+            <h1>Todo List App</h1>
             <div>
-              {data.length && (
+              {data.length ? (
                 <TodoList items={data} markComplete={markComplete} />
+              ) : (
+                ""
               )}
             </div>
-            <form>
-              <label>
-                Type Note:{" "}
-                <input type="text" value={tname} onChange={handleTChange} />
-              </label>
-            </form>
-            <h5>Title Content: {tname}</h5>
-            <h1>Note Content</h1>
-            <form>
-              <label>
-                Type Note:{" "}
-                <input type="text" value={cname} onChange={handleCChange} />
-              </label>
-            </form>
-            <h5>Note Content: {cname}</h5>
-            <div className={styles.button}>
-              <button onClick={() => onCreate(tname, cname)}>Add Note</button>
-            </div>
-            {/* <div className={styles.button}>
-              <button onClick={() => handlePrintText()}>
-                Get Previous Notes
-              </button>
-              {JSON.stringify(printText)}
-            </div> */}
+            <TodoForm
+              title={tname}
+              details={cname}
+              onDetailsChange={handleCChange}
+              onTitleChange={handleTChange}
+              onSubmit={() => onCreate(tname, cname)}
+            />
           </div>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
         </div>
       </main>
     </>
