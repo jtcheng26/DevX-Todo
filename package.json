@@ -1,0 +1,23 @@
+{
+  "name": "devx-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jtcheng26/DevX-Todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jtcheng26/DevX-Todo/issues"
+  },
+  "homepage": "https://github.com/jtcheng26/DevX-Todo#readme",
+  "dependencies": {
+    "pg": "^8.9.0"
+  }
+}
