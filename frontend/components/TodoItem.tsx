@@ -10,16 +10,15 @@ const ItemDiv = styled.div`
   width: 100%;
   border: 2px solid white;
   border-radius: 5px;
-  background-color: #777798aa;
+  background-color: #272743;
+  padding: 10px;
 `;
 
 export default function TodoItem({ item }: Props) {
   return (
     <ItemDiv>
-      <p>
-        <h1>{item.title}</h1>
-        {item.details}
-      </p>
+      <h1>{item.title}</h1>
+      <div>{item.details}</div>
     </ItemDiv>
   );
 }

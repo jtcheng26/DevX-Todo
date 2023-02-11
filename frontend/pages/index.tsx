@@ -5,13 +5,13 @@ import styles from "@/styles/Home.module.css";
 import React, { useState } from "react";
 import { getItems } from "@/components/getItems";
 import { createItem } from "@/components/createItem";
+import TodoList from "@/components/TodoList";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [tname, setTname] = useState("");
   const [cname, setCname] = useState("");
-
 
   const handleTChange = (e) => {
     setTname(e.target.value);
@@ -42,6 +42,28 @@ export default function Home() {
           </div>
           <div>
             <h1>Title</h1>
+            <div>
+              <TodoList
+                items={[
+                  {
+                    title: "Task 1",
+                    details: "Details",
+                  },
+                  {
+                    title: "Task 2",
+                    details: "Details",
+                  },
+                  {
+                    title: "Task 3",
+                    details: "Details",
+                  },
+                  {
+                    title: "Task 4",
+                    details: "Details",
+                  },
+                ]}
+              />
+            </div>
             <form>
               <label>
                 Type Note:{" "}
@@ -58,12 +80,11 @@ export default function Home() {
             </form>
             <h5>Note Content: {cname}</h5>
             <div className={styles.button}>
-              <button onClick = {() => createItem(tname, cname)}>Add Note</button>
+              <button onClick={() => createItem(tname, cname)}>Add Note</button>
             </div>
             <div className={styles.button}>
-              <button onClick = {() => getItems()}>Get Previous Notes</button>
+              <button onClick={() => getItems()}>Get Previous Notes</button>
             </div>
-
           </div>
           <p>
             Get started by editing&nbsp;

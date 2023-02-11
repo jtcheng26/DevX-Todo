@@ -2,8 +2,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-  name: string;
+  title: string;
+  details: string;
 };
+
 
 export let tasks = [
   {
@@ -26,7 +28,7 @@ export let tasks = [
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data[]>
 ) {
   res.status(200).json(tasks);
 }
