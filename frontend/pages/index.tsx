@@ -12,6 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [tname, setTname] = useState("");
   const [cname, setCname] = useState("");
+  const [printText, setPrintText] = useState("");
 
   const handleTChange = (e) => {
     setTname(e.target.value);
@@ -20,6 +21,10 @@ export default function Home() {
   const handleCChange = (e) => {
     setCname(e.target.value);
   };
+
+  const handlePrintText = async () => {
+    setPrintText(await getItems());
+  }
 
   return (
     <>
@@ -83,7 +88,8 @@ export default function Home() {
               <button onClick={() => createItem(tname, cname)}>Add Note</button>
             </div>
             <div className={styles.button}>
-              <button onClick={() => getItems()}>Get Previous Notes</button>
+              <button onClick = {() => handlePrintText()}>Get Previous Notes</button>
+              {JSON.stringify(printText)}
             </div>
           </div>
           <p>
