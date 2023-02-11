@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { getItems } from "@/components/getItems";
 import { createItem } from "@/components/createItem";
 import TodoList from "@/components/TodoList";
+import { completeItem } from "@/components/completeItem";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,8 +31,12 @@ export default function Home() {
     await createItem(tname, cname);
     handleData();
   };
+  const markComplete = async (tname, cname) => {
+    await completeItem(tname, cname);
+    handleData();
+  };
   useEffect(() => {
-    (async () => setData(await getItems()))();
+    (async () => await handleData())();
   }, []);
 
   return (
@@ -55,7 +60,11 @@ export default function Home() {
           </div>
           <div>
             <h1>Title</h1>
-            <div>{data.length && <TodoList items={data} />}</div>
+            <div>
+              {data.length && (
+                <TodoList items={data} markComplete={markComplete} />
+              )}
+            </div>
             <form>
               <label>
                 Type Note:{" "}

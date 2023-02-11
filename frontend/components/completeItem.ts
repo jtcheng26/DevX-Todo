@@ -1,4 +1,4 @@
-export async function createItem(title: string, details: string) {
+export async function completeItem(title: string, details: string) {
   return (
     await fetch(window.location.origin + "/api/complete", {
       method: "POST",
