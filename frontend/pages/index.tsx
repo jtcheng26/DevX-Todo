@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getItems } from "@/components/getItems";
 import { createItem } from "@/components/createItem";
 import TodoList from "@/components/TodoList";
@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [tname, setTname] = useState("");
   const [cname, setCname] = useState("");
-  const [printText, setPrintText] = useState("");
+  const [data, setData] = useState([]);
 
   const handleTChange = (e) => {
     setTname(e.target.value);
@@ -22,9 +22,17 @@ export default function Home() {
     setCname(e.target.value);
   };
 
-  const handlePrintText = async () => {
-    setPrintText(await getItems());
-  }
+  const handleData = async () => {
+    setData(await getItems());
+  };
+
+  const onCreate = async (tname, cname) => {
+    await createItem(tname, cname);
+    handleData();
+  };
+  useEffect(() => {
+    (async () => setData(await getItems()))();
+  }, []);
 
   return (
     <>
@@ -47,28 +55,7 @@ export default function Home() {
           </div>
           <div>
             <h1>Title</h1>
-            <div>
-              <TodoList
-                items={[
-                  {
-                    title: "Task 1",
-                    details: "Details",
-                  },
-                  {
-                    title: "Task 2",
-                    details: "Details",
-                  },
-                  {
-                    title: "Task 3",
-                    details: "Details",
-                  },
-                  {
-                    title: "Task 4",
-                    details: "Details",
-                  },
-                ]}
-              />
-            </div>
+            <div>{data.length && <TodoList items={data} />}</div>
             <form>
               <label>
                 Type Note:{" "}
@@ -85,12 +72,14 @@ export default function Home() {
             </form>
             <h5>Note Content: {cname}</h5>
             <div className={styles.button}>
-              <button onClick={() => createItem(tname, cname)}>Add Note</button>
+              <button onClick={() => onCreate(tname, cname)}>Add Note</button>
             </div>
-            <div className={styles.button}>
-              <button onClick = {() => handlePrintText()}>Get Previous Notes</button>
+            {/* <div className={styles.button}>
+              <button onClick={() => handlePrintText()}>
+                Get Previous Notes
+              </button>
               {JSON.stringify(printText)}
-            </div>
+            </div> */}
           </div>
           <p>
             Get started by editing&nbsp;
