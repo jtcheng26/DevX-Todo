@@ -6,4 +6,6 @@ WORKDIR /src
 RUN npm ci
 RUN npm run build
 
-ENTRYPOINT [ "npm start" ]
+EXPOSE 3000
+
+ENTRYPOINT [ "npm", "start" ]
